@@ -1,3 +1,5 @@
+#Before start on python use run terminal and install ( pip install streamlit ) then use ( streamlit run hello.py )
+
 print("Hello")
 
 import streamlit as st
@@ -8,9 +10,11 @@ import tempfile
 from PIL import Image
 
 # Create application title and file uploader widget.
-st.title("Welcome to the Face Detection App(BETA)")
+st.title("Welcome to the Face Detection App(BETA) ver0.8")
+st.title("Image detection and video")
 img_file_buffer = st.file_uploader("Choose a file", type=['jpg', 'jpeg', 'png', 'mp4'])
 
+st.title("m")
 # Check if the file was uploaded
 if img_file_buffer is not None:
     with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
