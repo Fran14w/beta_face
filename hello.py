@@ -1,4 +1,4 @@
-print("Hello World")
+print("Hello")
 
 import streamlit as st
 import cv2
@@ -7,13 +7,12 @@ import os
 import tempfile
 from PIL import Image
 
-# Application title
-st.title("Welcome to the Face Detection App")
+# Create application title and file uploader widget.
+st.title("Welcome to the Face Detection App(BETA)")
 img_file_buffer = st.file_uploader("Choose a file", type=['jpg', 'jpeg', 'png', 'mp4'])
 
 # Check if the file was uploaded
 if img_file_buffer is not None:
-    # Save uploaded file to a temporary location
     with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
         tmp_file.write(img_file_buffer.read())
         tmp_file.close()
@@ -52,14 +51,12 @@ if img_file_buffer is not None:
                 # Convert frame to grayscale for face detection
                 gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
-                # Detect faces in the frame
+                # Detect faces in the frame like size 
                 faces = face_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))
 
                 # Draw rectangles around detected faces
                 for (x, y, w, h) in faces:
                     cv2.rectangle(frame, (x, y), (x + w, y + h), (255, 0, 0), 2)
-
-                # Write the frame with face detection to the output video
                 video_out.write(frame)
 
             # Release video objects after processing
@@ -69,7 +66,7 @@ if img_file_buffer is not None:
             # Check if the output video was created successfully
             if os.path.exists(output_video_path):
                 st.write("Video processing complete!")
-                st.video(output_video_path)  # Display the output video
+                st.video(output_video_path) 
             else:
                 st.error("Error creating the output video!")
     else:
@@ -85,10 +82,8 @@ if img_file_buffer is not None:
 
         faces = face_cascade.detectMultiScale(gray, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))
 
-        # Draw rectangles around the faces
         for (x, y, w, h) in faces:
             cv2.rectangle(img_array, (x, y), (x + w, y + h), (255, 0, 0), 2)
 
-        # Convert the image back to an image object and display
         img_pil = Image.fromarray(img_array)
         st.image(img_pil, caption='Processed Image with Face Detection', use_column_width=True)
