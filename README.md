@@ -7,5 +7,5 @@ https://beta-face-detect-ver-08.streamlit.app/
 This version is 0.8 ;image works but not video output.
 
 this project is  process
-
-before start on python use run terminal and install  (  pip install streamlit ) then use ( streamlit run hello.py  )
+-----------------------------------------------------------------------------------------------------------------------
+Before start on python use run terminal and install  (  pip install streamlit ) then use ( streamlit run hello.py  )
